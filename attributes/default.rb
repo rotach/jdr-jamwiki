@@ -31,5 +31,5 @@ normal[:tomcat]['work_dir'] = "/var/cache/tomcat#{node["tomcat"]["base_version"]
 normal[:tomcat]['context_dir'] = "#{node["tomcat"]["config_dir"]}/Catalina/localhost"
 normal[:tomcat]['webapp_dir'] = "/var/lib/tomcat#{node["tomcat"]["base_version"]}/webapps"
 
-normal[:tomcat]["java_options"] = "-Xms1024M -Xmx2048M -Djava.awt.headless=true"
+normal[:tomcat]["java_options"] = "-Xms512M -Xmx512M -Djava.awt.headless=true"
 normal[:tomcat]["catalina_options"] = "-javaagent:/var/lib/tomcat7/newrelic/newrelic.jar"
