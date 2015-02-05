@@ -1,14 +1,26 @@
 ---
 driver:
-  name: vagrant
-  network:
-  - ["forwarded_port", {guest: 80, host: 8282}]
+  require_chef_omnibus: true
+  name: ec2
+  aws_access_key_id: "<%= ENV['AWS_ACCESS_KEY']%>"
+  aws_secret_access_key: "<%= ENV['AWS_SECRET_KEY']%>"
+  aws_ssh_key_id: "<%= ENV['AWS_SSH_KEY_ID']%>"
+  ssh_key: "<%= ENV['AWS_SSH_KEY']%>"
 
 provisioner:
   name: chef_solo
 
 platforms:
   - name: ubuntu-14.04
+    driver:
+      image_id: ami-9a562df2
+      flavor_id: t2.micro
+      security_group_ids: ["sg-aa57f0ce"]
+      tags:
+        Name: jdr-jamwiki
+      username: ubuntu
+      region: us-east-1
+      availability_zone: us-east-1c
 
 suites:
   - name: default
